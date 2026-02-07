@@ -127,7 +127,7 @@ function App() {
       if (!response.ok) {
         const errorText = await response.text()
         throw new Error(
-          errorText || `La API respondió con el estado ${response.status}.`,
+          errorText || `The API responded with status ${response.status}.`,
         )
       }
 
@@ -138,7 +138,7 @@ function App() {
       const message =
         error instanceof Error
           ? error.message
-          : 'Ocurrió un error inesperado.'
+          : 'An unexpected error occurred.'
       setErrorMessage(message)
     } finally {
       setIsUploading(false)
@@ -149,11 +149,11 @@ function App() {
     <div className="app">
       <header className="app__header">
         <div>
-          <p className="app__eyebrow">Optimizador de video</p>
-          <h1>Sube un video y recibe la versión optimizada</h1>
+          <p className="app__eyebrow">Video Optimizer</p>
+          <h1>Upload a video and get the optimized version</h1>
         </div>
         <p className="app__subtitle">
-          Envía tu archivo a la API y descarga el resultado en segundos.
+          Send your file to the API and download the result in seconds.
         </p>
       </header>
 
@@ -167,8 +167,8 @@ function App() {
             />
             <span>
               {selectedFile
-                ? `Archivo: ${selectedFile.name}`
-                : 'Selecciona un video (.mp4, .webm)'}
+                ? `File: ${selectedFile.name}`
+                : 'Select a video (.mp4, .webm)'}
             </span>
           </label>
 
@@ -177,7 +177,7 @@ function App() {
             className="button--ghost settings-toggle"
             onClick={() => setShowSettings((s) => !s)}
           >
-            {showSettings ? '▲ Ocultar configuración' : '▼ Configuración de compresión'}
+            {showSettings ? '▲ Hide settings' : '▼ Compression Settings'}
           </button>
 
           {showSettings && (
@@ -185,7 +185,7 @@ function App() {
               <div className="settings__grid">
                 <div className="settings__field">
                   <label htmlFor="crf">
-                    Calidad (CRF): <strong>{settings.crf}</strong>
+                    Quality (CRF): <strong>{settings.crf}</strong>
                   </label>
                   <input
                     id="crf"
@@ -198,12 +198,12 @@ function App() {
                     }
                   />
                   <span className="settings__hint">
-                    0 = sin pérdida · 51 = mínima calidad
+                    0 = lossless · 51 = lowest quality
                   </span>
                 </div>
 
                 <div className="settings__field">
-                  <label htmlFor="preset">Preset de codificación</label>
+                  <label htmlFor="preset">Encoding Preset</label>
                   <select
                     id="preset"
                     value={settings.preset}
@@ -218,12 +218,12 @@ function App() {
                     ))}
                   </select>
                   <span className="settings__hint">
-                    Más lento = mejor compresión
+                    Slower = better compression
                   </span>
                 </div>
 
                 <div className="settings__field">
-                  <label htmlFor="width">Resolución</label>
+                  <label htmlFor="width">Resolution</label>
                   <select
                     id="width"
                     value={settings.width}
@@ -254,7 +254,7 @@ function App() {
                 </div>
 
                 <div className="settings__field">
-                  <label htmlFor="videoCodec">Códec de video</label>
+                  <label htmlFor="videoCodec">Video Codec</label>
                   <select
                     id="videoCodec"
                     value={settings.videoCodec}
@@ -268,7 +268,7 @@ function App() {
                 </div>
 
                 <div className="settings__field">
-                  <label htmlFor="audioCodec">Códec de audio</label>
+                  <label htmlFor="audioCodec">Audio Codec</label>
                   <select
                     id="audioCodec"
                     value={settings.audioCodec}
@@ -282,7 +282,7 @@ function App() {
                 </div>
 
                 <div className="settings__field">
-                  <label htmlFor="audioBitrate">Bitrate de audio</label>
+                  <label htmlFor="audioBitrate">Audio Bitrate</label>
                   <select
                     id="audioBitrate"
                     value={settings.audioBitrate}
@@ -304,14 +304,14 @@ function App() {
                 className="button--ghost settings__reset"
                 onClick={() => setSettings({ ...DEFAULT_SETTINGS })}
               >
-                Restaurar valores por defecto
+                Reset to defaults
               </button>
             </div>
           )}
 
           <div className="form__actions">
             <button type="submit" disabled={!canSubmit}>
-              {isUploading ? 'Optimizando…' : 'Optimizar video'}
+              {isUploading ? 'Optimizing…' : 'Optimize Video'}
             </button>
             {selectedFile && (
               <button
@@ -320,7 +320,7 @@ function App() {
                 onClick={() => setSelectedFile(null)}
                 disabled={isUploading}
               >
-                Quitar archivo
+                Remove file
               </button>
             )}
           </div>
@@ -330,8 +330,8 @@ function App() {
 
         {!API_KEY && (
           <p className="hint">
-            Agrega la variable <strong>VITE_API_KEY</strong> en tu archivo
-            <code>.env</code> para enviar el header personalizado.
+            Add the <strong>VITE_API_KEY</strong> variable in your
+            <code>.env</code> file to send the custom header.
           </p>
         )}
       </section>
@@ -347,11 +347,11 @@ function App() {
               preload="metadata"
             />
           ) : (
-            <p className="placeholder">Selecciona un video para previsualizar.</p>
+            <p className="placeholder">Select a video to preview.</p>
           )}
         </div>
         <div className="panel">
-          <h2>Optimizado</h2>
+          <h2>Optimized</h2>
           {optimizedUrl ? (
             <>
               <video
@@ -361,12 +361,12 @@ function App() {
                 preload="metadata"
               />
               <a className="download" href={optimizedUrl} download>
-                Descargar video optimizado
+                Download optimized video
               </a>
             </>
           ) : (
             <p className="placeholder">
-              Cuando termines la optimización, verás el resultado aquí.
+              When optimization is complete, you'll see the result here.
             </p>
           )}
         </div>
