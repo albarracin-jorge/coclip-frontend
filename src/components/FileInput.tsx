@@ -8,13 +8,13 @@ export default function FileInput({ selectedFile, onChange }: FileInputProps) {
     <label className="file-input">
       <input
         type="file"
-        accept="video/mp4,video/webm"
+        accept="video/mp4,video/webm,video/quicktime,video/avi"
         onChange={onChange}
       />
       <span>
         {selectedFile
           ? `File: ${selectedFile.name}`
-          : 'Select a video (.mp4, .webm)'}
+          : 'Select a video (.mp4, .webm, .avi, .mov)'}
       </span>
     </label>
   )

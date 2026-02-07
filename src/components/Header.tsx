@@ -6,7 +6,7 @@ export default function Header() {
         <h1>Upload a video and get the optimized version</h1>
       </div>
       <p className="app__subtitle">
-        Send your file to the API and download the result in seconds.
+        Send your file and download the result in seconds.
       </p>
     </header>
   )
